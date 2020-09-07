@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AppareilService } from './services/appareil.service';
+import { interval, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,24 @@ import { AppareilService } from './services/appareil.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
+
+  secondes: number;
+  counterSubscription: Subscription;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const counter = interval(1000);
+    this.counterSubscription = counter.subscribe(
+      (value) => {
+        this.secondes = value;
+      },
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.counterSubscription.unsubscribe();
+  }
 
 }
