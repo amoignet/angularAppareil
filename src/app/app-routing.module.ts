@@ -1,3 +1,4 @@
+import { UserListComponent } from './user-list/user-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
@@ -6,9 +7,12 @@ import { SingleAppareilComponent } from './single-appareil/single-appareil.compo
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const routes: Routes = [
   { path: 'auth',  component: AuthComponent },
+  { path: 'users', component: UserListComponent },
+  { path: 'new-user', component: NewUserComponent },
   { path: 'appareils', canActivate: [AuthGuardService], component: AppareilViewComponent },
   { path: 'appareils/:id', canActivate: [AuthGuardService], component: SingleAppareilComponent },
   { path: 'edit', canActivate: [AuthGuardService], component: EditAppareilComponent },
