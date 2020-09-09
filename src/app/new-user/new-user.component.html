@@ -2,24 +2,28 @@
   <form [formGroup]='userForm' (ngSubmit)='onSubmitForm()'>
     <!-- Sur la balise  <form> , vous utilisez le property binding pour lier l'objet  userForm  à l'attribut  formGroup  du formulaire,
        créant la liaison pour Angular entre le template et le TypeScript.
-
+       
       Également dans la balise  <form> , vous avez toujours une méthode  onSubmitForm()  liée à ngSubmit,
          mais vous n'avez plus besoin de passer le formulaire comme argument puisque vous y avez déjà
          accès par l'objet  userForm  que vous avez créé. -->
+
     <div class='form-group'>
       <label for="firstname">Prénom</label>
       <input type="text" id="firstname" class="form-control" formControlName="firstname">
       <!-- Sur chaque  <input>  qui correspond à un  control  du formulaire, vous ajoutez l'attribut  formControlName
       où vous passez un string correspondant au nom du  control  dans l'objet TypeScript. -->
     </div>
+
     <div class="form-group">
       <label for="lastname">Nom</label>
       <input type="text" id="lastname" class="form-control" formControlName="lastname">
     </div>
+
     <div class='form-group'>
       <label for="email">Email</label>
       <input type="text" id="email" class="form-control" formControlName="email">
     </div>
+
     <div class="form-group">
       <label for="drinkPreference">Boisson</label>
       <select name="drinkPreference" id="drinkPreference" class="form-control" formControlName="drinkPreference">
@@ -27,13 +31,15 @@
         <option value="Jus de mangue">Jus de mangue</option>
       </select>
     </div>
+
     <div formArrayName="hobbies">
       <h3>Vos hobbies</h3>
       <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
         <input type="text" class="form-control" [formControlName]="i">
       </div>
       <button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
-</div>
+    </div>
+
     <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Enregistrer</button>
     <!-- Le bouton de type  submit  déclenche l'événement  ngSubmit,
     déclenchant ainsi la méthode  onSubmitForm() , que vous allez créer dans votre TypeScript -->
